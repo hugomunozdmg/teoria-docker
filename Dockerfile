@@ -1,3 +1,4 @@
+# ===== Ejemplo 1 =====
 # FROM node:22
 
 # WORKDIR /app
@@ -6,16 +7,28 @@
 
 # CMD ["node", "windows.js"]
 
-FROM node:22
+# ===== Ejemplo 2 =====
+FROM gcc:14
 
 WORKDIR /app
 
-COPY package.json .
+COPY main.c .
 
-RUN npm install
+RUN gcc main.c -o programa
 
-COPY server.js .
+CMD ["./programa"]
 
-EXPOSE 3000
+# ===== Ejemplo 3 =====
+# FROM node:22
 
-CMD ["npm", "run", "start"]
+# WORKDIR /app
+
+# COPY package.json .
+
+# RUN npm install
+
+# COPY server.js .
+
+# EXPOSE 3000
+
+# CMD ["npm", "run", "start"]
